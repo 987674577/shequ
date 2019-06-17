@@ -1,0 +1,5 @@
+#tomcat≈‰÷√
+server:
+  port: 80
+  servlet:
+    context-path: /shequ

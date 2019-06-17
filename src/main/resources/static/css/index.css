@@ -1,0 +1,132 @@
+* {
+    font-family: "Yu Gothic UI";
+}
+
+.mytitle {
+    width: 100%;
+    height: 50px;
+}
+
+.jianbianse1 {
+    background: #509FE1;
+    background: -moz-linear-gradient(top, #509FE1 0%, #CCEBFF 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #509FE1), color-stop(100%, #CCEBFF));
+    background: -webkit-linear-gradient(top, #509FE1 0%, #CCEBFF 100%);
+    background: -o-linear-gradient(top, #509FE1 0%, #CCEBFF 100%);
+    background: -ms-linear-gradient(top, #509FE1 0%, #CCEBFF 100%);
+    background: linear-gradient(to bottom, #509FE1 0%, #CCEBFF 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#509FE1', endColorstr='#CCEBFF', GradientType=0);
+}
+
+.jianbianse2 {
+    background: #80BCEC;
+    background: -moz-linear-gradient(top, #80BCEC 10%, #CCEBFF 90%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #80BCEC), color-stop(90%, #CCEBFF));
+    background: -webkit-linear-gradient(top, #80BCEC 10%, #CCEBFF 90%);
+    background: -o-linear-gradient(top, #80BCEC 10%, #CCEBFF 90%);
+    background: -ms-linear-gradient(top, #80BCEC 10%, #CCEBFF 90%);
+    background: linear-gradient(to bottom, #80BCEC 10%, #CCEBFF 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80BCEC', endColorstr='#CCEBFF', GradientType=0);
+}
+
+.mytitle div {
+    font-family: "Segoe UI Semilight";
+    font-size: 20px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: 600;
+    color: rgba(47, 44, 45, 0.89);
+}
+
+.myimg {
+    width: 100%;
+    margin: 0;
+}
+
+.myuser {
+    position: relative;
+    margin-top: -75px;
+    width: 100%;
+    height: 150px;
+    border-radius: 20px;
+    box-shadow: 0 0 5px #2a74b9;
+}
+
+.myuser > img {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.hello {
+    float: right;
+    height: 100%;
+    width: 60%;
+}
+
+.hello > div {
+    margin-left: 10px;
+}
+
+.hello > div:first-child {
+    margin-top: 20px;
+    font-size: 40px;
+    font-weight: 700;
+    color: #107595;
+}
+
+.hello > div:last-child {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #5588a3;
+}
+
+.gzt {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #5588a3;
+}
+
+.mypng {
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.myjob {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 120px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px rgba(28, 167, 226, 0.31);
+}
+
+.jobname {
+    position: relative;
+    font-family: "Segoe UI Semilight";
+    float: right;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-right: 50%;
+    font-weight: bold;
+    color: #083848;
+}
+
+.jobinfo {
+    position: relative;
+    float: left;
+    font-size: 15px;
+    margin-top: -40px;
+    margin-left: 40%;
+    color: #0084ad;
+}
+
+
+
