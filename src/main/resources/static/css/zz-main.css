@@ -1,0 +1,114 @@
+* {
+    font-family: "Yu Gothic UI";
+}
+
+body {
+    background-color: #CCEBFF;
+}
+
+.mytitle {
+    font-family: "Segoe UI Semilight";
+    font-size: 20px;
+    height: 100%;
+    line-height: 100%;
+    font-weight: 600;
+    margin-top: 5%;
+    margin-left: 5%;
+    color: #2369B6;
+}
+
+.iimg {
+    width: 36px;
+    height: 36px;
+    margin-top: -8px;
+}
+
+div.search {
+    padding: 10px 0;
+}
+
+form {
+    position: relative;
+    width: 98%;
+    margin: 0;
+}
+
+input, button {
+    border: none;
+    outline: none;
+}
+
+input {
+    width: 100%;
+    height: 42px;
+    padding-left: 13px;
+}
+
+button {
+    height: 42px;
+    width: 42px;
+    cursor: pointer;
+    position: absolute;
+}
+
+.bar7 form {
+    height: 42px;
+}
+
+.bar7 input {
+    width: 95%;
+    border-radius: 42px;
+    background: rgba(232, 232, 232, 0.77);
+    transition: .3s linear;
+    margin-left: 14px;
+}
+
+.bar7 input:focus {
+    border: 1px solid #28c3d4;
+}
+
+
+.mypng {
+    height: 90%;
+}
+
+.myjob {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    background-color: #88C1EE;
+    box-shadow: 0 0 5px rgba(21, 120, 164, 0.47);
+}
+
+.content {
+    float: right;
+    height: 100%;
+    width: 60%;
+}
+
+.uname {
+    position: relative;
+    margin-top: 8px;
+    margin-bottom: 5px;
+    font-family: "Segoe UI Semilight";
+    font-size: 20px;
+    font-weight: 600;
+    color: #38598b;
+}
+
+.uinfo {
+    width: 100%;
+    position: relative;
+    color: #f6f5f5;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+}
+
+.baseinfo {
+    margin-bottom: 5px;
+}
+
+

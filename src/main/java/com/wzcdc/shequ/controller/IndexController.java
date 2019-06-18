@@ -14,4 +14,16 @@ public class IndexController {
     public String getIndex() {
         return "index";
     }
+
+
+    @GetMapping("/zz")
+    public String getZzMain() {
+        return "zz/main";
+    }
+
+
+    @GetMapping("/zz/add")
+    public String getZzAdd() {
+        return "zz/add";
+    }
 }
