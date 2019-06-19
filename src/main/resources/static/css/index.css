@@ -40,6 +40,12 @@
     color: rgba(47, 44, 45, 0.89);
 }
 
+.myinco {
+    height: 30px;
+    width: 30px;
+    margin-top: -10px;
+}
+
 .myimg {
     width: 100%;
     margin: 0;
