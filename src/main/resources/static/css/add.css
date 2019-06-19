@@ -89,3 +89,10 @@ body {
 button {
     width: 100%;
 }
+
+.mdtitle {
+    font-weight: bold;
+    font-size: 18px;
+    color: #574f7d;
+    margin-bottom: -20px;
+}
