@@ -91,77 +91,231 @@
         <div class="col-xs-12">
             <div class="mytable">
                 <br>
+
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <label for="zzdiqu">追踪地区</label>
-                        <input type="text" class="form-control" id="zzdiqu" placeholder="请输入追踪地区">
+                        <label for="sfriqi">随访日期</label>
+                        <input type="date" class="form-control" id="sfriqi">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-5 col-xs-offset-1">
+                        <label for="zlyx">治疗月序</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">第</span>
+                            <input type="number" id="zlyx" class="form-control">
+                            <span class="input-group-addon">月</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="ddry">督导人员</label>
+                        <select class="form-control" id="ddry">
+                            <option value="1">医生</option>
+                            <option value="2">家属</option>
+                            <option value="3">自服药</option>
+                            <option value="4">其他</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="sffs">随访方式</label>
+                        <select class="form-control" id="sffs">
+                            <option value="1">门诊</option>
+                            <option value="2">家庭</option>
+                            <option value="4">其他</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="zzjtz">症状及体征</label>
+                        <select multiple class="form-control" id="zzjtz">
+                            <option value="1">没有症状</option>
+                            <option value="2">咳嗽咳痰</option>
+                            <option value="3">低热盗汗</option>
+                            <option value="4">咯血或血痰</option>
+                            <option value="5">胸痛消瘦</option>
+                            <option value="6">恶心纳差</option>
+                            <option value="7">头痛失眠</option>
+                            <option value="8">视物模糊</option>
+                            <option value="9">皮肤瘙痒、皮疹</option>
+                            <option value="10">耳鸣、听力下降</option>
+                            <option value="99">其他</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <label for="zzdanwei">追踪单位</label>
-                        <input type="text" class="form-control" id="zzdanwei" placeholder="请输入追踪单位">
+                        <label for="qitazz">其他症状</label>
+                        <textarea class="form-control" id="qitazz"></textarea>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="mdtitle">生活方式指导</div>
+                    </div>
+                </div>
+                <hr class="fenge mdfenge">
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="xiyan">吸烟</label>
+                        <div class="input-group">
+                            <input id="xiyan" type="number" class="form-control">
+                            <span class="input-group-addon">支/天</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="hejiu">喝酒</label>
+                        <div class="input-group">
+                            <input id="hejiu" type="number" class="form-control">
+                            <span class="input-group-addon">两/天</span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="fenge">
+                <br>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="mdtitle">用药</div>
+                    </div>
+                </div>
+                <hr class="fenge mdfenge">
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="hlfa">化疗方案</label>
+                        <textarea class="form-control" id="hlfa"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="yf">用法</label>
+                        <select class="form-control" id="yf">
+                            <option>每日</option>
+                            <option>间歇</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <label for="bgdiqu">报告地区</label>
-                        <input type="text" class="form-control" id="bgdiqu" placeholder="请输入报告地区">
+                        <label for="ywjx">药物剂型</label>
+                        <select multiple class="form-control" id="ywjx">
+                            <option value="1">固定剂量复合制剂</option>
+                            <option value="2">散装药</option>
+                            <option value="3">板式组合药</option>
+                            <option value="9">注射剂</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="lfycs">漏服药次数</label>
+                        <div class="input-group">
+                            <input id="lfycs" type="number" class="form-control">
+                            <span class="input-group-addon">次</span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="fenge">
+                <br>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label style="margin-top: 10px;width: 58%">药物不良反应</label>
+                        <input type="radio" checked="checked" class="radio-button" name="ywblfy">无
+                        <input type="radio" style="margin-left: 5%" class="radio-button" name="ywblfy">有
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <label for="bgdanwei">报告单位</label>
-                        <input type="text" class="form-control" id="bgdanwei" placeholder="请输入报告单位">
+                        <label for="fy">反应：</label>
+                        <textarea class="form-control" id="fy"></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <label for="zzriqi">追踪日期</label>
-                        <input type="date" class="form-control" id="zzriqi">
+                        <label style="margin-top: 10px;width: 58%">并发症或合并症</label>
+                        <input type="radio" checked="checked" class="radio-button" name="bfzhhbz">无
+                        <input type="radio" style="margin-left: 5%" class="radio-button" name="bfzhhbz">有
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <label style="margin-right: 10%;margin-top: 10px">追踪是否到位</label>
-                        <input type="radio" checked="checked" class="radio-button" name="zzdaowei">已到位
-                        <input type="radio" style="margin-left: 10%" class="radio-button" name="zzdaowei">未到位
+                        <label for="zz">症状：</label>
+                        <textarea class="form-control" id="zz"></textarea>
+                    </div>
+                </div>
+                <br>
+
+                <br>
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="mdtitle">转诊</div>
+                    </div>
+                </div>
+                <hr class="fenge mdfenge">
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="kebie">科别</label>
+                        <input type="text" class="form-control" id="kebie" placeholder="请输入转诊科目">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="yuanyin">原因</label>
+                        <input type="text" class="form-control" id="yuanyin" placeholder="请输入转诊原因">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="lzsfjg">2周内随访结果</label>
+                        <input type="text" class="form-control" id="lzsfjg" placeholder="请输入2周内随访结果">
                     </div>
                 </div>
                 <hr class="fenge">
+                <br>
+
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <label for="weidaoweiyuanyin">追踪未到位原因</label>
-                        <select class="form-control" id="weidaoweiyuanyin">
-                            <option>查无此人</option>
-                            <option>拒绝就诊</option>
-                            <option>外出</option>
-                            <option>死亡</option>
-                            <option>其他</option>
-                        </select>
+                        <label for="clyj">处理意见</label>
+                        <textarea class="form-control" id="clyj"></textarea>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <label for="wzzyuanyin">未追踪原因</label>
-                        <select class="form-control" id="wzzyuanyin">
-                            <option>地址不详</option>
-                            <option>其他</option>
-                        </select>
+                        <label for="xcsfsj">下次随访时间</label>
+                        <input type="date" class="form-control" id="xcsfsj">
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <label for="zhuanzhenriqi">转诊日期</label>
-                        <input type="date" class="form-control" id="zhuanzhenriqi">
+                        <label for="beizhu">备注</label>
+                        <textarea class="form-control" id="beizhu"></textarea>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-10 col-xs-offset-1">
-                        <label for="zzbeizhu">追踪信息备注</label>
-                        <textarea class="form-control" id="zzbeizhu"></textarea>
-                    </div>
-                </div>
+
                 <hr class="fenge">
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">

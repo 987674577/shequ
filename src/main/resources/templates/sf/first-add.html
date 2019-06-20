@@ -167,12 +167,13 @@
                 </div>
 
                 <br>
+                <br>
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <div class="mdtitle">用药</div>
                     </div>
                 </div>
-                <hr class="fenge">
+                <hr class="fenge mdfenge">
 
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
@@ -188,6 +189,201 @@
                             <option>每日</option>
                             <option>间歇</option>
                         </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="ywjx">药物剂型</label>
+                        <select multiple class="form-control" id="ywjx">
+                            <option value="1">固定剂量复合制剂</option>
+                            <option value="2">散装药</option>
+                            <option value="3">板式组合药</option>
+                            <option value="9">注射剂</option>
+                        </select>
+                    </div>
+                </div>
+                <hr class="fenge">
+                <br>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="ddryxz">督导人员选择</label>
+                        <select class="form-control" id="ddryxz">
+                            <option>医生</option>
+                            <option>家属</option>
+                            <option>自服药</option>
+                            <option>其他</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="mdtitle">家庭居住环境评估</div>
+                    </div>
+                </div>
+                <hr class="fenge mdfenge">
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label style="margin-top: 10px;width: 58%">单独的居室</label>
+                        <input type="radio" checked="checked" class="radio-button" name="ddjs">有
+                        <input type="radio" style="margin-left: 10%" class="radio-button" name="ddjs">无
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="tfqk">通风情况</label>
+                        <select class="form-control" id="tfqk">
+                            <option>良好</option>
+                            <option>一般</option>
+                            <option>差</option>
+                        </select>
+                    </div>
+                </div>
+                <hr class="fenge">
+                <br>
+
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="mdtitle">生活方式评估</div>
+                    </div>
+                </div>
+                <hr class="fenge mdfenge">
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label>吸烟</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control">
+                            <span class="input-group-addon">支/天</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label>喝酒</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control">
+                            <span class="input-group-addon">两/天</span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="fenge">
+                <br>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="mdtitle">健康教育及培训</div>
+                    </div>
+                </div>
+                <hr class="fenge mdfenge">
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="qydd">取药地点</label>
+                        <input type="text" class="form-control" id="qydd" placeholder="请输入取药地点">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="qysj">取药时间</label>
+                        <input type="date" class="form-control" id="qysj">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label style="margin-top: 10px;width: 58%">服药记录卡的填写</label>
+                        <input type="radio" checked="checked" class="radio-button" name="fyjlktx">掌握
+                        <input type="radio" style="margin-left: 5%" class="radio-button" name="fyjlktx">未掌握
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label style="margin-top: 10px;width: 58%">服药方法及药品存放</label>
+                        <input type="radio" checked="checked" class="radio-button" name="fyffjypcf">掌握
+                        <input type="radio" style="margin-left: 5%" class="radio-button" name="fyffjypcf">未掌握
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label style="margin-top: 10px;width: 58%">肺结核治疗疗程</label>
+                        <input type="radio" checked="checked" class="radio-button" name="fjhzllc">掌握
+                        <input type="radio" style="margin-left: 5%" class="radio-button" name="fjhzllc">未掌握
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label style="margin-top: 10px;width: 58%">不规律服药危害</label>
+                        <input type="radio" checked="checked" class="radio-button" name="bglfywh">掌握
+                        <input type="radio" style="margin-left: 5%" class="radio-button" name="bglfywh">未掌握
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label style="margin-top: 10px;width: 58%">服药后不良反应及处理</label>
+                        <input type="radio" checked="checked" class="radio-button" name="fyhblfyjcl">掌握
+                        <input type="radio" style="margin-left: 5%" class="radio-button" name="fyhblfyjcl">未掌握
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label style="margin-top: 10px;width: 58%">治疗期间复诊查痰</label>
+                        <input type="radio" checked="checked" class="radio-button" name="zlqjfzct">掌握
+                        <input type="radio" style="margin-left: 5%" class="radio-button" name="zlqjfzct">未掌握
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label style="margin-top: 10px;width: 58%">外出期间如何坚持服药</label>
+                        <input type="radio" checked="checked" class="radio-button" name="wcqjrhjcfy">掌握
+                        <input type="radio" style="margin-left: 5%" class="radio-button" name="wcqjrhjcfy">未掌握
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label style="margin-top: 10px;width: 58%">生活习惯及注意事项</label>
+                        <input type="radio" checked="checked" class="radio-button" name="shxgjzysx">掌握
+                        <input type="radio" style="margin-left: 5%" class="radio-button" name="shxgjzysx">未掌握
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label style="margin-top: 10px;width: 58%">密切接触者检查</label>
+                        <input type="radio" checked="checked" class="radio-button" name="mqjczjc">掌握
+                        <input type="radio" style="margin-left: 5%" class="radio-button" name="mqjczjc">未掌握
+                    </div>
+                </div>
+                <hr class="fenge">
+                <br>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="xcsfsj">下次随访时间</label>
+                        <input type="date" class="form-control" id="xcsfsj">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <label for="beizhu">备注</label>
+                        <textarea class="form-control" id="beizhu"></textarea>
                     </div>
                 </div>
 
