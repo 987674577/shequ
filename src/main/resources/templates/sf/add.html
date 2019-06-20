@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>随访服务信息录入</title>
     <link type="text/css" rel="stylesheet" href="/shequ/plugins/bootstrap/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="/shequ/plugins/layui-calendar/layui/css/layui.css">
+    <link type="text/css" rel="stylesheet" href="/shequ/plugins/layui-calendar/css/date.css">
     <link type="text/css" rel="stylesheet" href="/shequ/css/add.css">
     <script type="text/javascript" src="/shequ/plugins/jquery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/shequ/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/shequ/plugins/layui-calendar/layui/layui.js"></script>
 </head>
 <body>
 <div class="container">
@@ -227,11 +230,13 @@
 
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <label for="lfycs">漏服药次数</label>
+                        <label for="lfyrq">漏服药日期</label>
                         <div class="input-group">
-                            <input id="lfycs" type="number" class="form-control">
-                            <span class="input-group-addon">次</span>
+                            <input type="text" readonly class="form-control" id="lfyrq" placeholder="请选择漏服药日期">
+                            <span id="lfycs" class="input-group-addon">共漏服药X天</span>
                         </div>
+
+                        <div class="layui-inline" id="test-n2"></div>
                     </div>
                 </div>
 
@@ -334,4 +339,120 @@
     </div>
 </div>
 </body>
+<style>
+    #test-n2 .layui-laydate-main {
+        width: 700px;
+    }
+
+    #test-n2 .layui-laydate-content td, #test-n2 .layui-laydate-content th {
+        width: 100px;
+        height: 60px;
+    }
+
+    .laydate-day-mark {
+        background-color: #e4458e;
+        color: white;
+    }
+
+    span.laydate-day-mark {
+        line-height: 60px;
+    }
+
+    .laydate-day-mark::after {
+        background-color: #e4458e;
+    }
+</style>
+<script>
+    layui.use(['layer', 'form', 'jquery', 'laydate'], function () {
+        var layer = layui.layer,
+            $ = layui.jquery,
+            laydate = layui.laydate,
+            form = layui.form;
+
+
+        //定义json
+        var data = {'2001-01-01': ''};
+        var new_date = new Date();
+        loding_date(new_date, data);
+
+
+        //日历插件调用方法
+        function loding_date(date_value, data) {
+
+            laydate.render({
+                elem: '#test-n2'
+                , type: 'date'
+                , theme: 'grid'
+                , max: '2099-06-16 23:59:59'
+                , position: 'static'
+                , range: false
+                , value: date_value
+                , isInitValue: false
+                , calendar: false
+                , btns: false
+                , trigger: 'click'
+                , ready: function (value) {
+                    //console.log(value);
+                    hide_mr(value);
+                }
+                , done: function (value, date, endDate) {
+
+                    chose_moban(value, data);
+                    //layer.alert('你选择的日期是：' + value + '<br>获得的对象是' + JSON.stringify(date));
+                    inputDate(value);
+                }
+                , change: function (value, date) {
+                    hide_mr(date);
+
+                }
+                , mark: data//重要json！
+
+            });
+        }
+
+
+        function hide_mr(value) {
+            var mm = value.year + '-' + value.month + '-' + value.date;
+
+            $('.laydate-theme-grid table tbody').find('[lay-ymd="' + mm + '"]').removeClass('layui-this');
+        }
+
+        function inputDate(date) {
+            var dates = $('#lfyrq').val().split(',');
+            if ($('#lfyrq').val() == 0) {
+                $('#lfyrq').val(date);
+            } else {
+                if ($.inArray(date, dates) == -1) {
+                    $('#lfyrq').val($('#lfyrq').val() + "," + date);
+                } else {
+                    dates.splice($.inArray(date, dates), 1);
+                    var str = "";
+                    $.each(dates, function (index, value) {
+                        str += "," + value;
+                    });
+                    str = str.substr(1, str.length);
+                    $('#lfyrq').val(str);
+                }
+            }
+
+        }
+
+
+        //定义添加/编辑标注方法
+        function chose_moban(obj_date, markJson) {
+            $('#test-n2').html('');//重要！由于插件是嵌套指定容器，再次调用前需要清空原日历控件
+            if (markJson.hasOwnProperty(obj_date)) {
+                delete markJson[obj_date]
+            } else {
+                //添加属性
+                markJson[obj_date] = '漏服'
+            }
+
+            loding_date(obj_date, markJson);//重要！，再标注一个日期后会刷新当前日期变为初始值，所以必须调用当前选定日期。
+
+        }
+
+
+    })
+</script>
 </html>
