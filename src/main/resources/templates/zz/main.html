@@ -9,8 +9,13 @@
     <link type="text/css" rel="stylesheet" href="/shequ/css/main.css">
     <script type="text/javascript" src="/shequ/plugins/jquery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/shequ/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!--angular-->
+    <script type="text/javascript" src="/shequ/plugins/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/shequ/js/base.js"></script>
+    <script type="text/javascript" src="/shequ/js/controller/baseController.js"></script>
+    <script type="text/javascript" src="/shequ/js/controller/zzmainController.js"></script>
 </head>
-<body>
+<body ng-app="shequ" ng-controller="zzmainController">
 <div class="container">
     <div class="row">
         <div class="mytitle" role="alert"><img class="iimg" src="/shequ/img/dingwei.png"></img>XXX医院</div>
@@ -25,7 +30,7 @@
         </div>
     </div>
     <br>
-    <div class="myjob">
+    <div ng-click="gozzadd()" class="myjob">
         <img class="mypng" src="/shequ/img/touxiang.png">
         <div class="content">
             <div class="uname">
@@ -48,7 +53,7 @@
             </div>
         </div>
     </div>
-    <div class="myjob">
+    <div ng-click="gozzadd()" class="myjob">
         <img class="mypng" src="/shequ/img/touxiang.png">
         <div class="content">
             <div class="uname">
@@ -71,7 +76,7 @@
             </div>
         </div>
     </div>
-    <div class="myjob">
+    <div ng-click="gozzadd()" class="myjob">
         <img class="mypng" src="/shequ/img/touxiang.png">
         <div class="content">
             <div class="uname">
@@ -94,98 +99,7 @@
             </div>
         </div>
     </div>
-    <div class="myjob">
-        <img class="mypng" src="/shequ/img/touxiang.png">
-        <div class="content">
-            <div class="uname">
-                张三
-            </div>
-            <div class="uinfo">
-                429004199701273697
-            </div>
-            <div class="uinfo baseinfo">
-                浙江省温州市苍南县灵溪镇灵溪镇学士路610号
-            </div>
-            <div class="uinfo">
-                上次追踪日期：2018-12-30
-            </div>
-            <div class="uinfo">
-                上次追踪情况：追踪未到位
-            </div>
-            <div class="uinfo">
-                未到位原因：查无此人
-            </div>
-        </div>
-    </div>
-    <div class="myjob">
-        <img class="mypng" src="/shequ/img/touxiang.png">
-        <div class="content">
-            <div class="uname">
-                张三
-            </div>
-            <div class="uinfo">
-                429004199701273697
-            </div>
-            <div class="uinfo baseinfo">
-                浙江省温州市苍南县灵溪镇灵溪镇学士路610号
-            </div>
-            <div class="uinfo">
-                上次追踪日期：2018-12-30
-            </div>
-            <div class="uinfo">
-                上次追踪情况：追踪未到位
-            </div>
-            <div class="uinfo">
-                未到位原因：查无此人
-            </div>
-        </div>
-    </div>
-    <div class="myjob">
-        <img class="mypng" src="/shequ/img/touxiang.png">
-        <div class="content">
-            <div class="uname">
-                张三
-            </div>
-            <div class="uinfo">
-                429004199701273697
-            </div>
-            <div class="uinfo baseinfo">
-                浙江省温州市苍南县灵溪镇灵溪镇学士路610号
-            </div>
-            <div class="uinfo">
-                上次追踪日期：2018-12-30
-            </div>
-            <div class="uinfo">
-                上次追踪情况：追踪未到位
-            </div>
-            <div class="uinfo">
-                未到位原因：查无此人
-            </div>
-        </div>
-    </div>
-    <div class="myjob">
-        <img class="mypng" src="/shequ/img/touxiang.png">
-        <div class="content">
-            <div class="uname">
-                张三
-            </div>
-            <div class="uinfo">
-                429004199701273697
-            </div>
-            <div class="uinfo baseinfo">
-                浙江省温州市苍南县灵溪镇灵溪镇学士路610号
-            </div>
-            <div class="uinfo">
-                上次追踪日期：2018-12-30
-            </div>
-            <div class="uinfo">
-                上次追踪情况：追踪未到位
-            </div>
-            <div class="uinfo">
-                未到位原因：查无此人
-            </div>
-        </div>
-    </div>
+
 </div>
 </body>
 </html>

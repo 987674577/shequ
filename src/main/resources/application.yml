@@ -1,5 +1,36 @@
-#tomcat����
+#tomcat
 server:
   port: 80
   servlet:
     context-path: /shequ
+  tomcat:
+    uri-encoding: utf-8
+
+http-pool:
+  max-total: 200
+  default-max-per-route: 100
+  connect-timeout: 10000
+  connection-request-timeout: 10000
+  socket-timeout: 65000
+  validate-after-inactivity: 2000
+
+#远程接口
+interface:
+  ip: http://192.168.0.113:8080
+  username: sfxx
+  password: 123456
+
+#日志打印
+logging:
+  pattern:
+    console: "%d{yyyy/MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n"
+    file: "%d{yyyy/MM/dd-HH:mm} [%thread] %-5level %logger- %msg%n"
+  path: ./shequLog
+
+#spring
+spring:
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true

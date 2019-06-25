@@ -9,8 +9,14 @@
     <link type="text/css" rel="stylesheet" href="/shequ/css/index.css">
     <script type="text/javascript" src="/shequ/plugins/jquery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/shequ/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!--    angular-->
+    <script type="text/javascript" src="/shequ/plugins/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/shequ/js/base.js"></script>
+    <script type="text/javascript" src="/shequ/js/service/indexService.js"></script>
+    <script type="text/javascript" src="/shequ/js/controller/baseController.js"></script>
+    <script type="text/javascript" src="/shequ/js/controller/indexController.js"></script>
 </head>
-<body>
+<body ng-app="shequ" ng-controller="indexController" ng-init="doInit()">
 <div class="container">
     <div class="row">
         <div class="mytitle jianbianse1">
@@ -27,7 +33,9 @@
                 早上好
             </div>
             <div>
-                来自XXX的医生
+                来自
+                <div ng-bind="dataInfo.hosName"></div>
+                的医生
             </div>
         </div>
     </div>
@@ -38,22 +46,26 @@
             <hr class="myhr">
         </div>
     </div>
-    <div class="myjob">
+    <div ng-click="gozz()" class="myjob">
         <img class="mypng" src="/shequ/img/zz.png">
         <div class="jobname">
             追踪
         </div>
         <div class="jobinfo">
-            今日待完成追踪数：0条
+            今日待完成追踪数：
+            <div ng-bind="dataInfo.zzNum"></div>
+            条
         </div>
     </div>
-    <div class="myjob">
+    <div ng-click="gosf()" class="myjob">
         <img class="mypng" src="/shequ/img/sf.png">
         <div class="jobname">
             随访
         </div>
         <div class="jobinfo">
-            今日待完成随访数：0条
+            今日待完成随访数：
+            <div ng-bind="dataInfo.sfNum"></div>
+            条
         </div>
     </div>
 
