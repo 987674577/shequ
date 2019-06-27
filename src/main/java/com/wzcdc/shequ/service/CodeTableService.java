@@ -18,4 +18,14 @@ public interface CodeTableService {
      * @return
      */
     List<Map<String, String>> getTable(String tableCode);
+
+
+    /**
+     * 根据状态码和字典表代码获取状态名称
+     *
+     * @param typeCode  状态码
+     * @param tableCode 字典表代码
+     * @return
+     */
+    String getTypeName(String typeCode, String tableCode);
 }

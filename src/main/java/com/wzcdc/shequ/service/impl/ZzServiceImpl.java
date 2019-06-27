@@ -4,7 +4,6 @@ import com.wzcdc.shequ.entity.ZzEntity;
 import com.wzcdc.shequ.service.CodeTableService;
 import com.wzcdc.shequ.service.ZzService;
 import com.wzcdc.shequ.utils.HttpUtils;
-import com.wzcdc.shequ.utils.SelectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,7 +63,7 @@ public class ZzServiceImpl implements ZzService {
                     o.get("patientName"),
                     o.get("cardNo"),
                     o.get("zzdate"),
-                    SelectUtils.selectForCode((String) o.get("zzzt"), codeTableService.getTable("zzzt")),
+                    codeTableService.getTypeName((String) o.get("zzzt"), "zzzt"),
                     o.get("reason")
             ));
         });
