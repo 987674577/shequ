@@ -36,88 +36,37 @@
     </div>
     <br>
 
-    <div>
-        <div ng-click="gozzadd()" class="myjob">
+    <div ng-repeat="item in list">
+        <div ng-click="gozzadd(item.id,username)" class="myjob">
             <img class="mypng" src="/shequ/img/touxiang.png"/>
             <div class="content">
                 <div class="uname">
-                    张三
+                    <span ng-bind="forNull(item.name)"></span>
                 </div>
                 <div class="uinfo">
-                    429004199701273697
+                    <span ng-bind="forNull(item.cardNo)"></span>
                 </div>
                 <div class="uinfo baseinfo">
-                    浙江省温州市苍南县灵溪镇灵溪镇学士路610号
+                    <span ng-bind="forNull(item.addr)"></span>
                 </div>
                 <div class="uinfo">
-                    上次追踪日期：2018-12-30
+                    上次追踪日期：<span ng-bind="forNull(item.date)"></span>
                 </div>
                 <div class="uinfo">
-                    上次追踪情况：追踪未到位
+                    上次追踪情况：<span ng-bind="forNull(item.info)"></span>
                 </div>
                 <div class="uinfo">
-                    未到位原因：查无此人
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div>
-        <div ng-click="gozzadd()" class="myjob">
-            <img class="mypng" src="/shequ/img/touxiang.png">
-            <div class="content">
-                <div class="uname">
-                    张三
-                </div>
-                <div class="uinfo">
-                    429004199701273697
-                </div>
-                <div class="uinfo baseinfo">
-                    浙江省温州市苍南县灵溪镇灵溪镇学士路610号
-                </div>
-                <div class="uinfo">
-                    上次追踪日期：2018-12-30
-                </div>
-                <div class="uinfo">
-                    上次追踪情况：追踪未到位
-                </div>
-                <div class="uinfo">
-                    未到位原因：查无此人
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div ng-click="gozzadd()" class="myjob">
-            <img class="mypng" src="/shequ/img/touxiang.png">
-            <div class="content">
-                <div class="uname">
-                    张三
-                </div>
-                <div class="uinfo">
-                    429004199701273697
-                </div>
-                <div class="uinfo baseinfo">
-                    浙江省温州市苍南县灵溪镇灵溪镇学士路610号
-                </div>
-                <div class="uinfo">
-                    上次追踪日期：2018-12-30
-                </div>
-                <div class="uinfo">
-                    上次追踪情况：追踪未到位
-                </div>
-                <div class="uinfo">
-                    未到位原因：查无此人
+                    未到位原因：<span ng-bind="forNull(item.reason)"></span>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-xs-12">
-            <button style="width: 100%;position: relative; background: #CCEBFF" class="btn btn-default"
-                    ng-bind="makeText()" ngclick="searchList(false)">
-            </button>
+        <div class="col-xs-12" ng-click="searchList(false)">
+            <div class="text-center"
+                 style="width: 100%;height: 25px;line-height:25px;margin-bottom: 15px;margin-top: 15px;"
+                 ng-bind="makeText()"></div>
         </div>
     </div>
 </div>

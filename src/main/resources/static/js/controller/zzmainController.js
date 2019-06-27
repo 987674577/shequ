@@ -17,6 +17,7 @@ app.controller('zzmainController', function ($scope, $controller, areaOrgService
      */
     $scope.searchText = "";
 
+
     /**
      * 获取URL中的地区编码
      */
@@ -76,7 +77,6 @@ app.controller('zzmainController', function ($scope, $controller, areaOrgService
 
             $scope.busy = true;//进入加载状态
 
-
             patientService.zzSearchList($scope.searchData).success(function (ressponse) {
                 if (ressponse.res) {
 
@@ -91,7 +91,11 @@ app.controller('zzmainController', function ($scope, $controller, areaOrgService
                         $scope.list = ressponse.data;
                     } else {
                         //扩充列表加载
-                        $scope.list.push(ressponse.data);
+                        if (ressponse.data.length > 0) {
+                            ressponse.data.forEach(function (item) {
+                                $scope.list.push(item);
+                            });
+                        }
                     }
                 }
                 $scope.busy = false;//完成加载

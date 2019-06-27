@@ -56,10 +56,15 @@ public class HttpUtils {
      */
     private String getToken() {
         if (token == null) {
-            ResponseEntity<String> res = restTemplate.postForEntity(ip + "/wzcdc/rest/tokens?username=" + username + "&password=" + password, new HashMap<>(), String.class);
-            token = res.getBody();
-            if (token.equals("用户账号密码错误!")) {
-                LOG.error("获取远程接口的token时登录失败！");
+            ResponseEntity<String> res = null;
+            try {
+                res = restTemplate.postForEntity(ip + "/wzcdc/rest/tokens?username=" + username + "&password=" + password, new HashMap<>(), String.class);
+                token = res.getBody();
+                if (token.equals("用户账号密码错误!")) {
+                    LOG.error("获取远程接口的token时登录失败！");
+                }
+            } catch (Exception e) {
+                LOG.error("接口连接失败！");
             }
         }
         return token;

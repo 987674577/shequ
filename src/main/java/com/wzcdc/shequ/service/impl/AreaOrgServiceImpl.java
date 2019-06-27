@@ -1,5 +1,7 @@
 package com.wzcdc.shequ.service.impl;
 
+import com.wzcdc.shequ.entity.Area;
+import com.wzcdc.shequ.entity.Org;
 import com.wzcdc.shequ.service.AreaOrgService;
 import com.wzcdc.shequ.utils.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +46,47 @@ public class AreaOrgServiceImpl implements AreaOrgService {
     @Override
     public String getHosName(String username) {
         return getHosInfo(username).get("fuwujgmc");
+    }
+
+
+    /**
+     * 根据地区编码获取地区对象
+     *
+     * @param areaCode 地区编码
+     * @return
+     */
+    @Override
+    public Area getArea(String areaCode) {
+        List<Map<String, String>> data = (List<Map<String, String>>) httpUtils.doGet("/wzcdc/rest/tAddrController/list/" + areaCode).get("data");
+        String areaName = null;
+        try {
+            areaName = data.get(0).get("memo");
+        } catch (Exception e) {
+            areaName = "未找到";
+        }
+        return new Area(areaCode, areaName);
+    }
+
+
+    /**
+     * 根据机构编码获取机构对象
+     *
+     * @param orgCode 机构编码
+     * @return
+     */
+    @Override
+    public Org getOrg(String orgCode) {
+        List<Map<String, String>> data = (List<Map<String, String>>) httpUtils.doGet("/wzcdc/rest/tCdcOrgController/list/" + orgCode).get("data");
+        String orgName = null;
+        try {
+            orgName = data.get(0).get("unitName");
+        } catch (Exception e) {
+            orgName = "未找到";
+        }
+        return new Org(orgCode, orgName);
+    }
+
+    public List<Org> getOrgList(String orgCode){
+        return null;
     }
 }

@@ -15,7 +15,7 @@ public interface ZzService {
     /**
      * 获取待追踪条数
      *
-     * @param liveCode 登录用户的地区编码
+     * @param areaCode 登录用户的地区编码
      * @return 待追踪条数
      */
     Integer getCount(String areaCode);
@@ -28,4 +28,13 @@ public interface ZzService {
      * @return
      */
     List getList(Map<String, String> map);
+
+
+    /**
+     * 提交新增追踪数据
+     *
+     * @param data 录入数据
+     * @return
+     */
+    Boolean postData(Map data);
 }

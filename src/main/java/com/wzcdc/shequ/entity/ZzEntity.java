@@ -12,6 +12,11 @@ import lombok.Data;
 public class ZzEntity {
 
     /**
+     * id
+     */
+    private Object id;
+
+    /**
      * 姓名
      */
     private Object name;
@@ -19,7 +24,12 @@ public class ZzEntity {
     /**
      * 身份证
      */
-    private Object id;
+    private Object cardNo;
+
+    /**
+     * 住址
+     */
+    private Object addr;
 
     /**
      * 上次追踪日期
@@ -37,9 +47,11 @@ public class ZzEntity {
     private Object reason;
 
 
-    public ZzEntity(Object name, Object id, Object date, Object info, Object reason) {
-        this.name = name;
+    public ZzEntity(Object id, Object name, Object cardNo, Object addr, Object date, Object info, Object reason) {
         this.id = id;
+        this.name = name;
+        this.cardNo = cardNo;
+        this.addr = addr;
         this.date = date;
         this.info = info;
         this.reason = reason;

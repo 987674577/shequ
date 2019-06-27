@@ -14,10 +14,11 @@ app.controller('baseController', function ($scope) {
 
     /**
      * 跳转到追踪录入页面
-     * @param id 录入患者的身份证号
+     * @param id 个人信息id
+     * @param username 登录用户
      */
-    $scope.gozzadd = function (id) {
-        location.href = "/shequ/zz/add?id=" + id;
+    $scope.gozzadd = function (id, username) {
+        location.href = "/shequ/zz/add?id=" + id + "&username=" + username;
     };
 
 
@@ -33,7 +34,7 @@ app.controller('baseController', function ($scope) {
 
     /**
      * 跳转到随访录入页面
-     * @param id 录入患者的身份证号
+     * @param id 个人信息id
      * @param nextDate 下次随访日期
      */
     $scope.gosfadd = function (id, nextDate) {

@@ -59,8 +59,10 @@ public class ZzServiceImpl implements ZzService {
         ArrayList<ZzEntity> list = new ArrayList<>();
         data.forEach(o -> {
             list.add(new ZzEntity(
+                    o.get("id"),
                     o.get("patientName"),
                     o.get("cardNo"),
+                    o.get("addr"),
                     o.get("zzdate"),
                     codeTableService.getTypeName((String) o.get("zzzt"), "zzzt"),
                     o.get("reason")
@@ -70,4 +72,15 @@ public class ZzServiceImpl implements ZzService {
     }
 
 
+    /**
+     * 提交新增追踪数据
+     *
+     * @param data 录入数据
+     * @return
+     */
+    @Override
+    public Boolean postData(Map data) {
+        Map<String, String> map = (Map<String, String>) httpUtils.doPost("/wzcdc/rest/tBkllshController", data);
+        return "0".equals(map.get("respCode"));
+    }
 }

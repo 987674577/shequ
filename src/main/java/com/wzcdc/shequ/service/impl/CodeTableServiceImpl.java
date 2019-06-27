@@ -37,7 +37,7 @@ public class CodeTableServiceImpl implements CodeTableService {
         List<Map<String, String>> table = tables.get(tableCode);
         if (table == null) {
             //缓存中没有该字典表，发送请求获取
-            List<Map<String, String>> data = (List<Map<String, String>>) httpUtils.doGet("/wzcdc/rest/systemController/list/zzzt").get("data");
+            List<Map<String, String>> data = (List<Map<String, String>>) httpUtils.doGet("/wzcdc/rest/systemController/list/" + tableCode).get("data");
             //将字典表根据状态码排序
             Collections.sort(data, Comparator.comparingInt(o -> Integer.parseInt(o.get("typecode"))));
             table = data;

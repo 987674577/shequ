@@ -1,5 +1,7 @@
 package com.wzcdc.shequ.service;
 
+import com.wzcdc.shequ.entity.Patient;
+
 import java.util.Map;
 
 /**
@@ -14,8 +16,8 @@ public interface PatientService {
     /**
      * 根据身份证查询患者个人信息
      *
-     * @param idNo 身份证号码
+     * @param id 个人信息id
      * @return 患者个人信息
      */
-    Map getInfo(String idNo);
+    Patient getInfo(String id);
 }

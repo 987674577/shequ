@@ -1,9 +1,6 @@
 package com.wzcdc.shequ;
 
-import com.wzcdc.shequ.service.AreaOrgService;
-import com.wzcdc.shequ.service.CodeTableService;
-import com.wzcdc.shequ.service.SfService;
-import com.wzcdc.shequ.service.ZzService;
+import com.wzcdc.shequ.service.*;
 import com.wzcdc.shequ.utils.HttpUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RunWith(SpringRunner.class)
@@ -33,6 +31,9 @@ public class ShequApplicationTests {
 
     @Autowired
     private CodeTableService codeTableService;
+
+    @Autowired
+    private PatientService patientService;
 
 
     @Test
@@ -55,4 +56,19 @@ public class ShequApplicationTests {
         System.out.println(codeTableService.getTable("zzzt"));
     }
 
+
+    @Test
+    public void test1() {
+//        System.out.println(patientService.getInfo("045B2DE12E13416097EDADF0BB202CD0"));
+//        System.out.println(codeTableService.getTable("xb"));
+//        System.out.println(httpUtils.doGet("/wzcdc/rest/tBkllshController/" + "045B2DE12E13416097EDADF0BB202CD0").get("data"));
+        List<Map<String, String>> data = (List<Map<String, String>>) httpUtils.doGet("/wzcdc/rest/tCdcOrgController/list/" + "330304023").get("data");
+        String orgName = data.get(0).get("unitName");
+        System.out.println(orgName);
+    }
+
+    @Test
+    public void test2() {
+        System.out.println(areaOrgService.getHosInfo("076"));
+    }
 }

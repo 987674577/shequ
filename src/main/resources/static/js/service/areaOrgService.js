@@ -10,4 +10,5 @@ app.service('areaOrgService', function ($http) {
     this.getHosName = function (username) {
         return $http.get("/shequ/areaOrg/hosName/" + username);
     };
+
 });
