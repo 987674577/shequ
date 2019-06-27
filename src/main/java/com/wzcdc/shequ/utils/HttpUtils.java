@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.ApplicationArguments;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -91,6 +89,7 @@ public class HttpUtils {
                 String message = (String) responseEntity.getBody().get("message");
                 LOG.error(url + "=====" + message + "=====");
                 if (message.contains("token")) {
+                    //此为token失效，重置再发送请求
                     token = null;
                     return doGet(url);
                 }
@@ -122,9 +121,13 @@ public class HttpUtils {
             if (!responseEntity.getStatusCode().is2xxSuccessful()) {
                 LOG.error(url + "=====请求失败！=====");
             } else if (responseEntity.getBody().get("respCode").equals("-1")) {
-                LOG.error("=====token失效！=====");
-                token = null;
-                return doPost(url);
+                String message = (String) responseEntity.getBody().get("message");
+                LOG.error(url + "=====" + message + "=====");
+                if (message.contains("token")) {
+                    //此为token失效，重置再发送请求
+                    token = null;
+                    return doPost(url);
+                }
             }
         } catch (RestClientException e) {
             LOG.error(url + "=====请求失败！=====");
@@ -154,9 +157,13 @@ public class HttpUtils {
             if (!responseEntity.getStatusCode().is2xxSuccessful()) {
                 LOG.error(url + "=====请求失败！=====");
             } else if (responseEntity.getBody().get("respCode").equals("-1")) {
-                LOG.error("=====token失效！=====");
-                token = null;
-                return doPost(url, body);
+                String message = (String) responseEntity.getBody().get("message");
+                LOG.error(url + "=====" + message + "=====");
+                if (message.contains("token")) {
+                    //此为token失效，重置再发送请求
+                    token = null;
+                    return doPost(url, body);
+                }
             }
         } catch (RestClientException e) {
             LOG.error(url + "=====请求失败！=====");
