@@ -1,5 +1,8 @@
 package com.wzcdc.shequ.service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 随访信息服务接口
  *
@@ -15,5 +18,14 @@ public interface SfService {
      * @param liveCode 登录用户的地区编码
      * @return 待随访条数
      */
-    String getCount(String liveCode);
+    Integer getCount(String liveCode);
+
+
+    /**
+     * 查询待随访列表
+     *
+     * @param map 查询条件
+     * @return
+     */
+    List getList(Map<String, String> map);
 }

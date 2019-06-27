@@ -29,13 +29,9 @@
     <div class="myuser jianbianse2">
         <img src="/shequ/img/doctor.png">
         <div class="hello">
+            <div ng-bind="getTime()"></div>
             <div>
-                早上好
-            </div>
-            <div>
-                来自
-                <div ng-bind="dataInfo.hosName"></div>
-                的医生
+                <span ng-bind="dataInfo.hosName"></span>
             </div>
         </div>
     </div>
@@ -46,25 +42,25 @@
             <hr class="myhr">
         </div>
     </div>
-    <div ng-click="gozz()" class="myjob">
+    <div ng-click="gozz(username,dataInfo.areaCode)" class="myjob">
         <img class="mypng" src="/shequ/img/zz.png">
         <div class="jobname">
             追踪
         </div>
         <div class="jobinfo">
             今日待完成追踪数：
-            <div ng-bind="dataInfo.zzNum"></div>
+            <span ng-bind="dataInfo.zzNum"></span>
             条
         </div>
     </div>
-    <div ng-click="gosf()" class="myjob">
+    <div ng-click="gosf(username,dataInfo.areaCode)" class="myjob">
         <img class="mypng" src="/shequ/img/sf.png">
         <div class="jobname">
             随访
         </div>
         <div class="jobinfo">
             今日待完成随访数：
-            <div ng-bind="dataInfo.sfNum"></div>
+            <span ng-bind="dataInfo.sfNum"></span>
             条
         </div>
     </div>

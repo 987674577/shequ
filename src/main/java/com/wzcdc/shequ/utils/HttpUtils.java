@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -47,23 +48,21 @@ public class HttpUtils {
     @Autowired
     private RestTemplate restTemplate;
 
+    private String token = null;
+
 
     /**
      * 从session中获取token的方法
      *
-     * @param session 当前会话的session对象
      * @return token
      */
-    private String getToken(HttpSession session) {
-        String token = (String) session.getAttribute("token");
-        //如果session中没有token值
-        if (token == null || "".equals(token.trim())) {
+    private String getToken() {
+        if (token == null) {
             ResponseEntity<String> res = restTemplate.postForEntity(ip + "/wzcdc/rest/tokens?username=" + username + "&password=" + password, new HashMap<>(), String.class);
             token = res.getBody();
             if (token.equals("用户账号密码错误!")) {
                 LOG.error("获取远程接口的token时登录失败！");
             }
-            session.setAttribute("token", token);
         }
         return token;
     }
@@ -72,20 +71,30 @@ public class HttpUtils {
     /**
      * 发送GET请求
      *
-     * @param url     请求URL
-     * @param session 会话对象
+     * @param url 请求URL
      * @return 响应体
      */
-    public Map doGet(String url, HttpSession session) {
+    public Map doGet(String url) {
         //设置请求头
         HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.add("X-AUTH-TOKEN", getToken(session));
+        requestHeaders.add("X-AUTH-TOKEN", getToken());
         //设置请求头
         HttpEntity<String> requestEntity = new HttpEntity<>(null, requestHeaders);
         //发送请求，获取响应
         ResponseEntity<Map> responseEntity = null;
         try {
             responseEntity = restTemplate.exchange(ip + url, HttpMethod.GET, requestEntity, Map.class);
+            //校验请求是否成功，token是否失效
+            if (!responseEntity.getStatusCode().is2xxSuccessful()) {
+                LOG.error(url + "=====请求失败！=====");
+            } else if (responseEntity.getBody().get("respCode").equals("-1")) {
+                String message = (String) responseEntity.getBody().get("message");
+                LOG.error(url + "=====" + message + "=====");
+                if (message.contains("token")) {
+                    token = null;
+                    return doGet(url);
+                }
+            }
         } catch (RestClientException e) {
             LOG.error(url + "=====请求失败！=====");
         }
@@ -96,20 +105,27 @@ public class HttpUtils {
     /**
      * 发送POST请求
      *
-     * @param url     请求URL
-     * @param session 会话对象
+     * @param url 请求URL
      * @return 响应体
      */
-    public Map doPost(String url, HttpSession session) {
+    public Map doPost(String url) {
         //设置请求头
         HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.add("X-AUTH-TOKEN", getToken(session));
+        requestHeaders.add("X-AUTH-TOKEN", getToken());
         //设置请求头
         HttpEntity<String> requestEntity = new HttpEntity<>(null, requestHeaders);
         //发送请求，获取响应
         ResponseEntity<Map> responseEntity = null;
         try {
             responseEntity = restTemplate.exchange(ip + url, HttpMethod.POST, requestEntity, Map.class);
+            //校验请求是否成功，token是否失效
+            if (!responseEntity.getStatusCode().is2xxSuccessful()) {
+                LOG.error(url + "=====请求失败！=====");
+            } else if (responseEntity.getBody().get("respCode").equals("-1")) {
+                LOG.error("=====token失效！=====");
+                token = null;
+                return doPost(url);
+            }
         } catch (RestClientException e) {
             LOG.error(url + "=====请求失败！=====");
         }
@@ -120,24 +136,33 @@ public class HttpUtils {
     /**
      * 发送POST请求
      *
-     * @param url     请求URL
-     * @param body    请求体
-     * @param session 会话对象
+     * @param url  请求URL
+     * @param body 请求体
      * @return 响应体
      */
-    public Map doPost(String url, Map body, HttpSession session) {
+    public Map doPost(String url, Map body) {
         //设置请求头
         HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.add("X-AUTH-TOKEN", getToken(session));
+        requestHeaders.add("X-AUTH-TOKEN", getToken());
         //设置请求头
         HttpEntity<Map> requestEntity = new HttpEntity<>(body, requestHeaders);
         //发送请求，获取响应
         ResponseEntity<Map> responseEntity = null;
         try {
             responseEntity = restTemplate.exchange(ip + url, HttpMethod.POST, requestEntity, Map.class);
+            //校验请求是否成功，token是否失效
+            if (!responseEntity.getStatusCode().is2xxSuccessful()) {
+                LOG.error(url + "=====请求失败！=====");
+            } else if (responseEntity.getBody().get("respCode").equals("-1")) {
+                LOG.error("=====token失效！=====");
+                token = null;
+                return doPost(url, body);
+            }
         } catch (RestClientException e) {
             LOG.error(url + "=====请求失败！=====");
         }
         return responseEntity.getBody();
     }
+
+
 }

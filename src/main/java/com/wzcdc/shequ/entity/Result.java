@@ -11,11 +11,20 @@ import lombok.Data;
 @Data
 public class Result {
 
-    private Boolean res;
+    /**
+     * 返回状态
+     */
+    private Boolean res = true;
 
+    /**
+     * 返回数据
+     */
     private Object data;
 
-    private String msg;
+    /**
+     * 错误原因
+     */
+    private String errMsg;
 
 
     public Result() {
@@ -25,11 +34,9 @@ public class Result {
     /**
      * 成功传回数据
      *
-     * @param res  请求状态
      * @param data 返回数据
      */
-    public Result(Boolean res, Object data) {
-        this.res = res;
+    public Result(Object data) {
         this.data = data;
     }
 
@@ -37,11 +44,11 @@ public class Result {
     /**
      * 失败传回原因
      *
-     * @param res 请求状态
-     * @param msg 错误原因
+     * @param res    返回状态
+     * @param errMsg 错误原因
      */
-    public Result(Boolean res, String msg) {
+    public Result(Boolean res, String errMsg) {
         this.res = res;
-        this.msg = msg;
+        this.errMsg = errMsg;
     }
 }

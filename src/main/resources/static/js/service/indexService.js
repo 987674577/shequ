@@ -3,11 +3,11 @@ app.service('indexService', function ($http) {
 
     /**
      *  获取首页初始化数据
-     * @param liveCode
+     * @param username
      * @returns {HttpPromise}
      */
-    this.getInit = function (liveCode) {
-        return $http.get("/shequ/init/" + liveCode);
+    this.getInit = function (username) {
+        return $http.get("/shequ/init/" + username);
     };
 
 });

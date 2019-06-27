@@ -1,5 +1,5 @@
 //定义随访列表控制层
-app.controller('sfmainController', function ($scope, $controller, $location) {
+app.controller('sfmainController', function ($scope, $controller) {
 
 
     //继承base控制器

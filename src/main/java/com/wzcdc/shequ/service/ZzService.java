@@ -18,16 +18,14 @@ public interface ZzService {
      * @param liveCode 登录用户的地区编码
      * @return 待追踪条数
      */
-    String getCount(String liveCode);
+    Integer getCount(String areaCode);
 
 
     /**
-     * 获取待追踪列表
+     * 查询待追踪列表
      *
-     * @param page     当前页
-     * @param size     每页条数
-     * @param liveCode 登录用户的地区编码
-     * @return 待追踪列表
+     * @param map 查询条件
+     * @return
      */
-    List getList(Integer page, Integer size, String liveCode);
+    List getList(Map<String, String> map);
 }

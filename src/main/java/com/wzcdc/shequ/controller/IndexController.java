@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 目录控制器，将url请求转向目标html
@@ -36,7 +37,7 @@ public class IndexController {
      *
      * @return
      */
-    @GetMapping("/")
+    @GetMapping("/index")
     public String getIndex() {
 
         return "index";
@@ -101,19 +102,23 @@ public class IndexController {
     /**
      * 初始化首页数据的方法
      *
-     * @param liveCode 当前登录地区代码
+     * @param username 当前登录用户名
      * @return
      */
-    @GetMapping("/init/{liveCode}")
+    @GetMapping("/init/{username}")
     @ResponseBody
-    public Result init(@PathVariable("liveCode") String liveCode) {
+    public Result init(@PathVariable("username") String username) {
         HashMap<String, Object> data = new HashMap<>();
-        //1.通过登陆地区代码获取当前登录医院名称
-        data.put("hosName", areaOrgService.getHosName(liveCode));
-        //2.获取追踪待完成数目
-        data.put("zzNum", zzService.getCount(liveCode));
-        //3.获取随访待完成数目
-        data.put("sfNum", sfService.getCount(liveCode));
-        return new Result(true, data);
+        //1.获取当前登录医院名称
+        Map<String, String> hosInfo = areaOrgService.getHosInfo(username);
+        data.put("hosName", hosInfo.get("fuwujgmc"));
+        //2.获取当前登录医院区域代码
+        String areaCode = hosInfo.get("mycode");
+        data.put("areaCode", areaCode);
+        //3.获取追踪待完成数目
+        data.put("zzNum", zzService.getCount(areaCode));
+        //4.获取随访待完成数目
+        data.put("sfNum", sfService.getCount(areaCode));
+        return new Result(data);
     }
 }

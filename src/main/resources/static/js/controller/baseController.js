@@ -1,13 +1,14 @@
-//集成通用的页面跳转方法
-app.controller('baseController', function ($scope, $location) {
+//集成通用方法
+app.controller('baseController', function ($scope) {
 
 
     /**
      * 跳转到追踪页面
-     * @param liveCode 区域代码
+     * @param username 登录用户名
+     * @param areaCode 地区编码
      */
-    $scope.gozz = function (liveCode) {
-        location.href = "/shequ/zz?liveCode=" + liveCode;
+    $scope.gozz = function (username, areaCode) {
+        location.href = "/shequ/zz?username=" + username + "&areaCode=" + areaCode;
     };
 
 
@@ -22,19 +23,26 @@ app.controller('baseController', function ($scope, $location) {
 
     /**
      * 跳转到随访页面
-     * @param liveCode 区域代码
+     * @param username 登录用户名
+     * @param areaCode 地区编码
      */
-    $scope.gosf = function (liveCode) {
-        location.href = "/shequ/sf?liveCode" + liveCode;
+    $scope.gosf = function (username, areaCode) {
+        location.href = "/shequ/sf?username" + username + "&areaCode=" + areaCode;
     };
 
 
     /**
      * 跳转到随访录入页面
      * @param id 录入患者的身份证号
+     * @param nextDate 下次随访日期
      */
-    $scope.gosfadd = function (id) {
-        location.href = "/shequ/sf/add?id=" + id;
+    $scope.gosfadd = function (id, nextDate) {
+        if (!nextDate) {
+            //下次随访日期为空，跳转到初次录入界面
+            location.href = "/shequ/sf/firstAdd?id=" + id;
+        } else {
+            location.href = "/shequ/sf/add?id=" + id;
+        }
     };
 
 
@@ -44,8 +52,25 @@ app.controller('baseController', function ($scope, $location) {
      * @returns {*} 获取到的参数
      */
     $scope.getUrlPara = function (name) {
-        return $location.search()[name];
-    }
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    };
 
 
+    /**
+     *  格式化空值的方法
+     * @param data 要格式化的数据
+     * @returns {string|*}
+     */
+    $scope.forNull = function (data) {
+        if (!data || data.toUpperCase() === "NULL") {
+            return "未填写";
+        } else {
+            return data;
+        }
+    };
 });
