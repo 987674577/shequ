@@ -20,7 +20,7 @@ public class CodeTableServiceImpl implements CodeTableService {
     private HttpUtils httpUtils;
 
     /**
-     * 存储字典表
+     * 字典表缓存
      */
     private Map<String, List<Map<String, String>>> tables = new HashMap<>();
 

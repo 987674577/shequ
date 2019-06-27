@@ -14,7 +14,7 @@ public interface CodeTableService {
     /**
      * 查找数据字典
      *
-     * @param tableCode 字典Code
+     * @param tableCode 字典表代码
      * @return
      */
     List<Map<String, String>> getTable(String tableCode);

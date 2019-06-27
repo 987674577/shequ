@@ -56,7 +56,6 @@ public class ZzServiceImpl implements ZzService {
         Map res = httpUtils.doPost(buffer.toString());
         List<Map> data = (List<Map>) res.get("data");
 
-
         ArrayList<ZzEntity> list = new ArrayList<>();
         data.forEach(o -> {
             list.add(new ZzEntity(
