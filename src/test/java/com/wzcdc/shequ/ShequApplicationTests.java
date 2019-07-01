@@ -67,13 +67,22 @@ public class ShequApplicationTests {
         System.out.println(data);
     }
 
+
     @Test
     public void test2() {
         System.out.println(areaOrgService.getOrgList("330304"));
     }
 
+
     @Test
     public void test3() {
         System.out.println(httpUtils.doGet("/wzcdc/rest/tRecordController/searchList?liveCode=33032731&name=").get("data"));
+    }
+
+
+    @Test
+    public void test4() {
+        List<Map> list = (List<Map>) httpUtils.doGet("/wzcdc/rest/tRecordController/get/" + "330327196012274739").get("data");
+        System.out.println(list.get(0));
     }
 }

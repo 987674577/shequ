@@ -6,9 +6,9 @@ app.controller('sfAddController', function ($scope, $controller, patientService)
     $controller('baseController', {$scope: $scope});
 
     /**
-     * 获取URL中的患者id
+     * 获取URL中的患者cardNo
      */
-    $scope.id = $scope.getUrlPara("id");
+    $scope.cardNo = $scope.getUrlPara("cardNo");
 
 
     /**
@@ -60,7 +60,7 @@ app.controller('sfAddController', function ($scope, $controller, patientService)
      * 初始化页面数据
      */
     $scope.doInit = function () {
-        patientService.sfAddInit($scope.id).success(function (response) {
+        patientService.sfAddInit($scope.cardNo).success(function (response) {
             if (response.res) {
                 $scope.data = response.data;
                 $scope.postData.name = $scope.data.patient.name;
@@ -92,8 +92,8 @@ app.controller('sfAddController', function ($scope, $controller, patientService)
         }
     });
     $scope.$watch('postData.zlyx', function (newValue, oldValue) {
-        if (newValue <= 1) {
-            $scope.postData.zlyx = 1;
+        if (newValue <= 0) {
+            $scope.postData.zlyx = 0;
         } else if (isNaN(newValue)) {
             $scope.postData.zlyx = oldValue;
         } else {
@@ -108,14 +108,16 @@ app.controller('sfAddController', function ($scope, $controller, patientService)
     $scope.$watch('blfy', function (newValue, oldValue) {
         if (newValue == 1) {
             $scope.postData.ywblfy = "无";
-        } else {
+        }
+        if (newValue == 2) {
             $scope.postData.ywblfy = $scope.blfyinfo;
         }
     });
     $scope.$watch('hbz', function (newValue, oldValue) {
         if (newValue == 1) {
             $scope.postData.bfzhhbz = "无";
-        } else {
+        }
+        if (newValue == 2) {
             $scope.postData.bfzhhbz = $scope.hbzinfo;
         }
     });
@@ -129,7 +131,7 @@ app.controller('sfAddController', function ($scope, $controller, patientService)
             $scope.blfyinfo = oldValue;
         } else {
             if ($scope.blfy == 2) {
-                $scope.postData.ywblfy = $scope.blfyinfo;
+                $scope.postData.ywblfy = newValue;
             }
         }
     });
@@ -138,7 +140,7 @@ app.controller('sfAddController', function ($scope, $controller, patientService)
             $scope.hbzinfo = oldValue;
         } else {
             if ($scope.hbz == 2) {
-                $scope.postData.bfzhhbz = $scope.hbzinfo;
+                $scope.postData.bfzhhbz = newValue;
             }
         }
     });
@@ -155,8 +157,13 @@ app.controller('sfAddController', function ($scope, $controller, patientService)
     $scope.check = function () {
 
         var errMsg = [];
+
         if ($scope.postData.sfDate == "") {
             errMsg.push("随访日期");
+        }
+
+        if ($scope.postData.zlyx < 1) {
+            errMsg.push("治疗月序");
         }
 
         if ($scope.postData.ddry == "") {

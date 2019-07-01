@@ -58,7 +58,7 @@
                     <div class="col-xs-4 col-xs-offset-1">
                         联系电话：
                     </div>
-                    <div class="col-xs-6 col-xs-pull-1" ng-bind="data.patient.phone">
+                    <div class="col-xs-6 col-xs-pull-1" ng-bind="forNull(data.patient.phone)">
                     </div>
                 </div>
                 <div class="row">
@@ -239,7 +239,7 @@
                                name="ywblfy">有
                     </div>
                 </div>
-                <div class="row" ng-if="blfy==2">
+                <div class="row" ng-show="blfy==2">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="fy">反应：</label>
                         <textarea class="form-control" id="fy" ng-model="blfyinfo"></textarea>
@@ -253,7 +253,7 @@
                                name="bfzhhbz">有
                     </div>
                 </div>
-                <div class="row" ng-if="hbz==2">
+                <div class="row" ng-show="hbz==2">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="zz">症状：</label>
                         <textarea class="form-control" id="zz" ng-model="hbzinfo"></textarea>

@@ -7,9 +7,9 @@ app.controller('sfFirAddController', function ($scope, $controller, patientServi
 
 
     /**
-     * 获取URL中的患者id
+     * 获取URL中的患者cardNo
      */
-    $scope.id = $scope.getUrlPara("id");
+    $scope.cardNo = $scope.getUrlPara("cardNo");
 
 
     /**
@@ -24,7 +24,7 @@ app.controller('sfFirAddController', function ($scope, $controller, patientServi
      * @type {{}}
      */
     $scope.postData = {
-        id: $scope.id,
+        id: "",
         name: "",
         cardNo: "",
         no: "",
@@ -63,9 +63,10 @@ app.controller('sfFirAddController', function ($scope, $controller, patientServi
      * 初始化页面数据
      */
     $scope.doInit = function () {
-        patientService.sfFirAddInit($scope.id).success(function (response) {
+        patientService.sfFirAddInit($scope.cardNo).success(function (response) {
             if (response.res) {
                 $scope.data = response.data;
+                $scope.postData.id = $scope.data.patient.id;
                 $scope.postData.name = $scope.data.patient.name;
                 $scope.postData.cardNo = $scope.data.patient.cardNo;
             }

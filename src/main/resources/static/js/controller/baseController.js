@@ -34,15 +34,15 @@ app.controller('baseController', function ($scope) {
 
     /**
      * 跳转到随访录入页面
-     * @param id 个人信息id
+     * @param cardNo 患者身份证号
      * @param nextDate 下次随访日期
      */
-    $scope.gosfadd = function (id, nextDate) {
+    $scope.gosfadd = function (cardNo, nextDate) {
         if (!nextDate) {
             //下次随访日期为空，跳转到初次录入界面
-            location.href = "/shequ/sf/firstAdd?id=" + id;
+            location.href = "/shequ/sf/firstAdd?cardNo=" + cardNo;
         } else {
-            location.href = "/shequ/sf/add?id=" + id;
+            location.href = "/shequ/sf/add?cardNo=" + cardNo;
         }
     };
 

@@ -53,15 +53,15 @@ public class SfController {
     /**
      * 第一次随访录入初始化
      *
-     * @param id 患者ID
+     * @param cardNo 患者身份证
      * @return
      */
-    @GetMapping("/firInit/{id}")
-    public Result firInit(@PathVariable("id") String id) {
+    @GetMapping("/firInit/{cardNo}")
+    public Result firInit(@PathVariable("cardNo") String cardNo) {
         HashMap<String, Object> data = new HashMap<>();
 
         //1.获取患者个人基本信息
-        Patient info = patientService.getInfo(id);
+        Patient info = patientService.getInfoByCardNo(cardNo);
         data.put("patient", info);
 
         //2.获取数据字典
@@ -84,15 +84,15 @@ public class SfController {
     /**
      * 随访录入初始化
      *
-     * @param id 患者ID
+     * @param cardNo 患者身份证
      * @return
      */
-    @GetMapping("/init/{id}")
-    public Result init(@PathVariable("id") String id) {
+    @GetMapping("/init/{cardNo}")
+    public Result init(@PathVariable("cardNo") String cardNo) {
         HashMap<String, Object> data = new HashMap<>();
 
         //1.获取患者个人基本信息
-        Patient info = patientService.getInfo(id);
+        Patient info = patientService.getInfoByCardNo(cardNo);
         data.put("patient", info);
 
         //2.获取数据字典

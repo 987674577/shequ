@@ -20,4 +20,13 @@ public interface PatientService {
      * @return 患者个人信息
      */
     Patient getInfo(String id);
+
+
+    /**
+     * 根据患者身份证号获取个人信息
+     *
+     * @param cardNo 患者身份证号
+     * @return
+     */
+    Patient getInfoByCardNo(String cardNo);
 }
