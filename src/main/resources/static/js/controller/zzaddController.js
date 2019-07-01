@@ -94,10 +94,6 @@ app.controller('zzaddController', function ($scope, $controller, patientService)
             errMsg.push("追踪未到位原因");
         }
 
-        if ($scope.postData.jzDate == "") {
-            errMsg.push("转诊日期");
-        }
-
         if ($scope.postData.trackBz == "") {
             errMsg.push("追踪信息备注");
         }

@@ -65,7 +65,7 @@ public class ZzServiceImpl implements ZzService {
                     o.get("addr"),
                     o.get("zzdate"),
                     codeTableService.getTypeName((String) o.get("zzzt"), "zzzt"),
-                    o.get("reason")
+                    codeTableService.getTypeName((String) o.get("reason"), "cbkwdwyy")
             ));
         });
         return list;
