@@ -147,7 +147,12 @@ app.controller('sfAddController', function ($scope, $controller, patientService)
 
 
     $scope.$watch('postData.lfyrq', function (newValue, oldValue) {
-        $scope.postData.lfycs = $scope.postData.lfyrq.split(",").length;
+        if (newValue.length == 0) {
+            $scope.postData.lfycs = 0;
+        } else {
+            $scope.postData.lfycs = newValue.split(",").length;
+        }
+
     });
 
 
