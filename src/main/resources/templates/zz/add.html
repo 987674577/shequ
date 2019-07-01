@@ -140,7 +140,7 @@
                     </div>
                 </div>
                 <hr class="fenge">
-                <div class="row" ng-if="zzzt==1">
+                <div class="row" ng-show="zzzt==1">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="weidaoweiyuanyin">追踪未到位原因</label>
                         <select class="form-control" id="weidaoweiyuanyin" ng-model="postData.trackWdwReason">
@@ -150,7 +150,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="row" ng-if="zzzt==0">
+                <div class="row" ng-show="zzzt==0">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="wzzyuanyin">未追踪原因</label>
                         <select class="form-control" id="wzzyuanyin" ng-model="postData.noTrackReason">
