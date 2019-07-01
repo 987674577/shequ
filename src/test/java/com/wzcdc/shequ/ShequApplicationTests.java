@@ -64,11 +64,16 @@ public class ShequApplicationTests {
 //        System.out.println(httpUtils.doGet("/wzcdc/rest/tBkllshController/" + "045B2DE12E13416097EDADF0BB202CD0").get("data"));
         List<Map<String, String>> data = (List<Map<String, String>>) httpUtils.doGet("/wzcdc/rest/tCdcOrgController/list/" + "330304023").get("data");
         String orgName = data.get(0).get("unitName");
-        System.out.println(orgName);
+        System.out.println(data);
     }
 
     @Test
     public void test2() {
-        System.out.println(areaOrgService.getHosInfo("076"));
+        System.out.println(areaOrgService.getOrgList("330304"));
+    }
+
+    @Test
+    public void test3() {
+        System.out.println(httpUtils.doGet("/wzcdc/rest/tRecordController/searchList?liveCode=33032731&name=").get("data"));
     }
 }

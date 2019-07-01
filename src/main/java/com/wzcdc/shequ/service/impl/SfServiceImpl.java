@@ -42,6 +42,35 @@ public class SfServiceImpl implements SfService {
      */
     @Override
     public List getList(Map<String, String> map) {
-        return null;
+        String liveCode = map.get("areaCode");
+        String name = map.get("text");
+        List list = (List) httpUtils.doGet("/wzcdc/rest/tRecordController/searchList?liveCode=" + liveCode + "&name=" + name).get("data");
+        return list;
+    }
+
+
+    /**
+     * 提交第一次随访信息
+     *
+     * @param data 提交数据
+     * @return
+     */
+    @Override
+    public Boolean firPostData(Map data) {
+        Map<String, String> map = (Map<String, String>) httpUtils.doPost("/wzcdc/rest/tFirstSfController", data);
+        return "0".equals(map.get("respCode"));
+    }
+
+
+    /**
+     * 提交随访信息
+     *
+     * @param data 提交数据
+     * @return
+     */
+    @Override
+    public Boolean postData(Map data) {
+        Map<String, String> map = (Map<String, String>) httpUtils.doPost("/wzcdc/rest/tSfController", data);
+        return "0".equals(map.get("respCode"));
     }
 }

@@ -12,8 +12,14 @@
     <script type="text/javascript" src="/shequ/plugins/jquery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/shequ/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/shequ/plugins/layui-calendar/layui/layui.js"></script>
+    <!--angular-->
+    <script type="text/javascript" src="/shequ/plugins/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/shequ/js/base.js"></script>
+    <script type="text/javascript" src="/shequ/js/service/patientService.js"></script>
+    <script type="text/javascript" src="/shequ/js/controller/baseController.js"></script>
+    <script type="text/javascript" src="/shequ/js/controller/sfAddController.js"></script>
 </head>
-<body>
+<body ng-app="shequ" ng-controller="sfAddController" ng-init="doInit()">
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
@@ -31,48 +37,42 @@
                     <div class="col-xs-3 col-xs-offset-1">
                         姓名：
                     </div>
-                    <div class="col-xs-6 ">
-                        张三
+                    <div class="col-xs-6 " ng-bind="data.patient.name">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-3 col-xs-offset-1">
                         性别：
                     </div>
-                    <div class="col-xs-6">
-                        男
+                    <div class="col-xs-6" ng-bind="data.patient.sex">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-3 col-xs-offset-1">
                         年龄：
                     </div>
-                    <div class="col-xs-6">
-                        30
+                    <div class="col-xs-6" ng-bind="data.patient.age">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-xs-offset-1">
                         联系电话：
                     </div>
-                    <div class="col-xs-6 col-xs-pull-1">
-                        17683854457
+                    <div class="col-xs-6 col-xs-pull-1" ng-bind="data.patient.phone">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-xs-offset-1">
                         身份证：
                     </div>
-                    <div class="col-xs-6 col-xs-pull-1">
-                        429004199701273697
+                    <div class="col-xs-6 col-xs-pull-1" ng-bind="data.patient.cardNo">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-4 col-xs-offset-1">
                         家庭住址：
                     </div>
-                    <div class="col-xs-7 col-xs-pull-1">
-                        浙江省温州市苍南县灵溪镇灵溪镇学士路610号
+                    <div class="col-xs-7 col-xs-pull-1" ng-bind="data.patient.addr">
                     </div>
                 </div>
 
@@ -98,7 +98,7 @@
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="sfriqi">随访日期</label>
-                        <input type="date" class="form-control" id="sfriqi">
+                        <input type="date" class="form-control" id="sfriqi" ng-model="postData.sfDate">
                     </div>
                 </div>
 
@@ -107,7 +107,7 @@
                         <label for="zlyx">治疗月序</label>
                         <div class="input-group">
                             <span class="input-group-addon">第</span>
-                            <input type="number" id="zlyx" class="form-control">
+                            <input type="text" id="zlyx" class="form-control" ng-model="postData.zlyx">
                             <span class="input-group-addon">月</span>
                         </div>
                     </div>
@@ -116,22 +116,21 @@
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="ddry">督导人员</label>
-                        <select class="form-control" id="ddry">
-                            <option value="1">医生</option>
-                            <option value="2">家属</option>
-                            <option value="3">自服药</option>
-                            <option value="4">其他</option>
+                        <select class="form-control" id="ddry" ng-model="postData.ddry">
+                            <option ng-repeat="item in data.tables.ddry" value="{{item.typecode}}"
+                                    ng-bind="item.typename">
+                            </option>
                         </select>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <label for="sffs">随访方式</label>
-                        <select class="form-control" id="sffs">
-                            <option value="1">门诊</option>
-                            <option value="2">家庭</option>
-                            <option value="3">电话</option>
+                        <label for="sffangshi">随访方式</label>
+                        <select class="form-control" id="sffangshi" ng-model="postData.sffs">
+                            <option ng-repeat="item in data.tables.sffs" value="{{item.typecode}}"
+                                    ng-bind="item.typename">
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -139,25 +138,11 @@
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="zzjtz">症状及体征</label>
-                        <select multiple class="form-control" id="zzjtz">
-                            <option value="1">没有症状</option>
-                            <option value="2">咳嗽咳痰</option>
-                            <option value="3">低热盗汗</option>
-                            <option value="4">咯血或血痰</option>
-                            <option value="5">胸痛消瘦</option>
-                            <option value="6">恶心纳差</option>
-                            <option value="7">头痛失眠</option>
-                            <option value="8">视物模糊</option>
-                            <option value="9">皮肤瘙痒、皮疹</option>
-                            <option value="10">耳鸣、听力下降</option>
-                            <option value="99">其他</option>
+                        <select multiple class="form-control" id="zzjtz" ng-model="zzjtz">
+                            <option ng-repeat="item in data.tables.zzjtz" value="{{item.typecode}}"
+                                    ng-bind="item.typename">
+                            </option>
                         </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-10 col-xs-offset-1">
-                        <label for="qitazz">其他症状</label>
-                        <textarea class="form-control" id="qitazz"></textarea>
                     </div>
                 </div>
 
@@ -172,9 +157,9 @@
 
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <label for="xiyan">吸烟</label>
+                        <label>吸烟</label>
                         <div class="input-group">
-                            <input id="xiyan" type="number" class="form-control">
+                            <input type="text" class="form-control" ng-model="postData.xy">
                             <span class="input-group-addon">支/天</span>
                         </div>
                     </div>
@@ -182,9 +167,9 @@
 
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <label for="hejiu">喝酒</label>
+                        <label>喝酒</label>
                         <div class="input-group">
-                            <input id="hejiu" type="number" class="form-control">
+                            <input type="text" class="form-control" ng-model="postData.hj">
                             <span class="input-group-addon">两/天</span>
                         </div>
                     </div>
@@ -203,37 +188,39 @@
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="hlfa">化疗方案</label>
-                        <textarea class="form-control" id="hlfa"></textarea>
+                        <textarea class="form-control" id="hlfa" ng-model="postData.zlfa"></textarea>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="yf">用法</label>
-                        <select class="form-control" id="yf">
-                            <option>每日</option>
-                            <option>间歇</option>
+                        <select class="form-control" id="yf" ng-model="postData.yf">
+                            <option ng-repeat="item in data.tables.yf" value="{{item.typecode}}"
+                                    ng-bind="item.typename">
+                            </option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <label for="ywjx">药物剂型</label>
-                        <select multiple class="form-control" id="ywjx">
-                            <option value="1">固定剂量复合制剂</option>
-                            <option value="2">散装药</option>
-                            <option value="3">板式组合药</option>
-                            <option value="9">注射剂</option>
+                        <label for="ypjx">药品剂型</label>
+                        <select multiple class="form-control" id="ypjx" ng-model="ypjx">
+                            <option ng-repeat="item in data.tables.ypjx" value="{{item.typecode}}"
+                                    ng-bind="item.typename">
+                            </option>
                         </select>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <label for="lfyrq">漏服药日期</label>
+                        <label for="lfyrq">漏服药日期</label>{{postData.lfyrq}}
                         <div class="input-group">
-                            <input type="text" readonly class="form-control" id="lfyrq" placeholder="请选择漏服药日期">
-                            <span id="lfycs" class="input-group-addon">共漏服药X天</span>
+                            <input type="text" readonly class="form-control" id="lfyrq" placeholder="请选择漏服药日期"
+                                   ng-model="postData.lfyrq">
+                            <span id="lfycs" class="input-group-addon">共漏服药<span
+                                    ng-bind="postData.lfycs"></span>天</span>
                         </div>
 
                         <div class="layui-inline" id="test-n2"></div>
@@ -246,27 +233,30 @@
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label style="margin-top: 10px;width: 58%">药物不良反应</label>
-                        <input type="radio" checked="checked" class="radio-button" name="ywblfy">无
-                        <input type="radio" style="margin-left: 5%" class="radio-button" name="ywblfy">有
+                        <input ng-model="blfy" ng-value="1" type="radio" class="radio-button"
+                               name="ywblfy">无
+                        <input ng-model="blfy" ng-value="2" type="radio" style="margin-left: 5%" class="radio-button"
+                               name="ywblfy">有
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" ng-if="blfy==2">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="fy">反应：</label>
-                        <textarea class="form-control" id="fy"></textarea>
+                        <textarea class="form-control" id="fy" ng-model="blfyinfo"></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label style="margin-top: 10px;width: 58%">并发症或合并症</label>
-                        <input type="radio" checked="checked" class="radio-button" name="bfzhhbz">无
-                        <input type="radio" style="margin-left: 5%" class="radio-button" name="bfzhhbz">有
+                        <input ng-model="hbz" ng-value="1" type="radio" class="radio-button" name="bfzhhbz">无
+                        <input ng-model="hbz" ng-value="2" type="radio" style="margin-left: 5%" class="radio-button"
+                               name="bfzhhbz">有
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" ng-if="hbz==2">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="zz">症状：</label>
-                        <textarea class="form-control" id="zz"></textarea>
+                        <textarea class="form-control" id="zz" ng-model="hbzinfo"></textarea>
                     </div>
                 </div>
                 <br>
@@ -282,19 +272,21 @@
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="kebie">科别</label>
-                        <input type="text" class="form-control" id="kebie" placeholder="请输入转诊科目">
+                        <input type="text" class="form-control" id="kebie" placeholder="请输入转诊科目" ng-model="postData.kb">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="yuanyin">原因</label>
-                        <input type="text" class="form-control" id="yuanyin" placeholder="请输入转诊原因">
+                        <input type="text" class="form-control" id="yuanyin" placeholder="请输入转诊原因"
+                               ng-model="postData.yy">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="lzsfjg">2周内随访结果</label>
-                        <input type="text" class="form-control" id="lzsfjg" placeholder="请输入2周内随访结果">
+                        <input type="text" class="form-control" id="lzsfjg" placeholder="请输入2周内随访结果"
+                               ng-model="postData.lznsfjg">
                     </div>
                 </div>
                 <hr class="fenge">
@@ -303,33 +295,33 @@
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="clyj">处理意见</label>
-                        <textarea class="form-control" id="clyj"></textarea>
+                        <textarea class="form-control" id="clyj" ng-model="postData.clyj"></textarea>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="xcsfsj">下次随访时间</label>
-                        <input type="date" class="form-control" id="xcsfsj">
+                        <input type="date" class="form-control" id="xcsfsj" ng-model="postData.xcsfsj">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <label for="beizhu">备注</label>
-                        <textarea class="form-control" id="beizhu"></textarea>
+                        <textarea class="form-control" id="beizhu" ng-model="postData.bz"></textarea>
                     </div>
                 </div>
 
                 <hr class="fenge">
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <button class="btn btn-default">重置</button>
+                        <button class="btn btn-default" ng-click="reset()">重置</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
-                        <button class="btn btn-primary">提交</button>
+                        <button class="btn btn-primary" ng-click="submit()">提交</button>
                     </div>
                 </div>
                 <br>

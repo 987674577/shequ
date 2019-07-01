@@ -66,7 +66,7 @@ public class ZzController {
         Map<String, String> hosInfo = areaOrgService.getHosInfo(username);
         HashMap<String, Object> areaOrg = new HashMap<>();
         areaOrg.put("zzdq", areaOrgService.getArea(hosInfo.get("mycode")));//追踪地区
-        areaOrg.put("zzdw", areaOrgService.getOrg(hosInfo.get("fuwujgbh")));//追踪单位
+        areaOrg.put("zzdw", areaOrgService.getOrgList(hosInfo.get("fuwujgbh").substring(0, 6)));//追踪单位
         areaOrg.put("bgdq", areaOrgService.getArea((String) info.getReportArea()));//报告地区
         areaOrg.put("bgdw", areaOrgService.getOrg((String) info.getReportUnit()));//报告单位
         data.put("areaOrg", areaOrg);

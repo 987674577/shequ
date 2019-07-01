@@ -12,77 +12,45 @@
     <!--    angular-->
     <script type="text/javascript" src="/shequ/plugins/angular/angular.min.js"></script>
     <script type="text/javascript" src="/shequ/js/base.js"></script>
+    <script type="text/javascript" src="/shequ/js/service/areaOrgService.js"></script>
+    <script type="text/javascript" src="/shequ/js/service/patientService.js"></script>
     <script type="text/javascript" src="/shequ/js/controller/baseController.js"></script>
     <script type="text/javascript" src="/shequ/js/controller/sfmainController.js"></script>
 </head>
-<body ng-app="shequ" ng-controller="sfmainController">
+<body ng-app="shequ" ng-controller="sfmainController" ng-init="doInit()">
 <div class="container">
     <div class="row">
-        <div class="mytitle" role="alert"><img class="iimg" src="/shequ/img/dingwei.png"></img>XXX医院</div>
+        <div class="mytitle" role="alert"><img class="iimg" src="/shequ/img/dingwei.png"></img><span
+                ng-bind="hosName"></span></div>
     </div>
     <div class="row">
         <div class="col-sm-3 col-lg-3 col-md-3">
             <div class="search bar7">
                 <form>
-                    <input type="text" placeholder="请输入患者姓名或身份证">
+                    <input ng-model="searchText" type="text" placeholder="请输入患者姓名或身份证">
                 </form>
             </div>
         </div>
     </div>
     <br>
-    <div ng-click="gosfadd()" class="myjob2">
-        <img class="mypng" src="/shequ/img/touxiang.png">
-        <div class="content">
-            <div class="uname">
-                张三
-            </div>
-            <div class="uinfo">
-                429004199701273697
-            </div>
-            <div class="uinfo3 baseinfo">
-                浙江省温州市苍南县灵溪镇灵溪镇学士路610号
-            </div>
-            <div class="uinfo2">
-                下次随访日期：2018-12-30
+
+    <div ng-repeat="item in list">
+        <div ng-click="gosfadd(item.ID,item.XCSFSJ)" class="myjob2">
+            <img class="mypng" src="/shequ/img/touxiang.png">
+            <div class="content">
+                <div class="uname" ng-bind="item.NAME">
+                </div>
+                <div class="uinfo" ng-bind="item.CARD">
+                </div>
+                <div class="uinfo3 baseinfo" ng-bind="forNull(item.ADDR)">
+                </div>
+                <div class="uinfo2">
+                    下次随访日期：<span ng-bind="forDate(item.XCSFSJ)"></span>
+                </div>
             </div>
         </div>
     </div>
 
-    <div ng-click="gosfadd()" class="myjob2">
-        <img class="mypng" src="/shequ/img/touxiang.png">
-        <div class="content">
-            <div class="uname">
-                张三
-            </div>
-            <div class="uinfo">
-                429004199701273697
-            </div>
-            <div class="uinfo3 baseinfo">
-                浙江省温州市苍南县灵溪镇灵溪镇学士路610号
-            </div>
-            <div class="uinfo2">
-                下次随访日期：2018-12-30
-            </div>
-        </div>
-    </div>
-
-    <div ng-click="gosfadd()" class="myjob2">
-        <img class="mypng" src="/shequ/img/touxiang.png">
-        <div class="content">
-            <div class="uname">
-                张三
-            </div>
-            <div class="uinfo">
-                429004199701273697
-            </div>
-            <div class="uinfo3 baseinfo">
-                浙江省温州市苍南县灵溪镇灵溪镇学士路610号
-            </div>
-            <div class="uinfo2">
-                下次随访日期：2018-12-30
-            </div>
-        </div>
-    </div>
 
 </div>
 </body>

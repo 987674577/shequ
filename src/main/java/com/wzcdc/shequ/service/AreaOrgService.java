@@ -4,6 +4,7 @@ package com.wzcdc.shequ.service;
 import com.wzcdc.shequ.entity.Area;
 import com.wzcdc.shequ.entity.Org;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -49,4 +50,13 @@ public interface AreaOrgService {
      * @return
      */
     Org getOrg(String orgCode);
+
+
+    /**
+     * 根据机构编码前缀查找机构列表以供选择
+     *
+     * @param orgCode 机构编码前缀
+     * @return
+     */
+    List<Org> getOrgList(String orgCode);
 }

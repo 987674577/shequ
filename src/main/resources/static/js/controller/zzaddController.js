@@ -38,7 +38,13 @@ app.controller('zzaddController', function ($scope, $controller, patientService)
         trackBz: ""
     };
 
+
+    /**
+     * 追踪状态
+     * @type {number}
+     */
     $scope.zzzt = 0;
+
 
     /**
      * 初始化页面数据
@@ -48,7 +54,6 @@ app.controller('zzaddController', function ($scope, $controller, patientService)
             if (response.res) {
                 $scope.data = response.data;
                 $scope.postData.trackArea = $scope.data.areaOrg.zzdq.areaCode;
-                $scope.postData.trackUnit = $scope.data.areaOrg.zzdw.orgCode;
                 $scope.postData.reportArea = $scope.data.areaOrg.bgdq.areaCode;
                 $scope.postData.reportUnit = $scope.data.areaOrg.bgdw.orgCode;
             }
@@ -75,6 +80,10 @@ app.controller('zzaddController', function ($scope, $controller, patientService)
      */
     $scope.check = function () {
         var errMsg = [];
+        if ($scope.postData.trackUnit == "") {
+            errMsg.push("追踪单位");
+        }
+
         if ($scope.postData.trackDate == "") {
             errMsg.push("追踪日期");
         }

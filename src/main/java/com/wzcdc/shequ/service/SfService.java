@@ -28,4 +28,22 @@ public interface SfService {
      * @return
      */
     List getList(Map<String, String> map);
+
+
+    /**
+     * 提交第一次随访信息
+     *
+     * @param data 提交数据
+     * @return
+     */
+    Boolean firPostData(Map data);
+
+
+    /**
+     * 提交随访信息
+     *
+     * @param data 提交数据
+     * @return
+     */
+    Boolean postData(Map data);
 }

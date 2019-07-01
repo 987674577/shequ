@@ -34,7 +34,7 @@ app.controller('indexController', function ($scope, $controller, indexService) {
         if (hour < 6) {
             return "为时尚早";
         } else if (hour < 9) {
-            return "新的一天，早安";
+            return "早安";
         } else if (hour < 12) {
             return "上午好";
         } else if (hour < 14) {

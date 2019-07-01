@@ -28,4 +28,50 @@ app.service('patientService', function ($http) {
     this.postData = function (data) {
         return $http.post("/shequ/zzdata/postData", data);
     };
+
+
+    /**
+     * 查询待随访列表信息
+     * @param data 查询条件
+     * @returns {HttpPromise}
+     */
+    this.sfSearchList = function (data) {
+        return $http.post("/shequ/sfdata/list", data);
+    };
+
+
+    /**
+     * 第一次随访录入初始化
+     * @param id 患者id
+     */
+    this.sfFirAddInit = function (id) {
+        return $http.get("/shequ/sfdata/firInit/" + id);
+    };
+
+    /**
+     * 随访录入初始化
+     * @param id 患者id
+     */
+    this.sfAddInit = function (id) {
+        return $http.get("/shequ/sfdata/init/" + id);
+    };
+
+
+    /**
+     * 上传第一次随访数据
+     * @param data 新增第一次随访数据
+     * @returns {*}
+     */
+    this.firSfPostData = function (data) {
+        return $http.post("/shequ/sfdata/firPostData", data);
+    };
+
+    /**
+     * 上传随访数据
+     * @param data 新增随访数据
+     * @returns {*}
+     */
+    this.sfPostData = function (data) {
+        return $http.post("/shequ/sfdata/postData", data);
+    };
 });

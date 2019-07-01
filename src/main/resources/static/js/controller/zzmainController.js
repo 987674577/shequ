@@ -132,7 +132,7 @@ app.controller('zzmainController', function ($scope, $controller, areaOrgService
     $scope.$watch('searchData.text', function (newValue, oldValue) {
         //搜索内容变更时，重新查询
         $scope.listOver = false;//列表到底改为false
-        $scope.page = 1;//页码还原为1
+        $scope.searchData.page = 1;//页码还原为1
         //开始搜索
         $scope.searchList(true);
     });

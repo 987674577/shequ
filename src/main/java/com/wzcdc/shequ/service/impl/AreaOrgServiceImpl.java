@@ -7,6 +7,7 @@ import com.wzcdc.shequ.utils.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -86,7 +87,19 @@ public class AreaOrgServiceImpl implements AreaOrgService {
         return new Org(orgCode, orgName);
     }
 
-    public List<Org> getOrgList(String orgCode){
-        return null;
+
+    /**
+     * 根据机构编码前缀查找机构列表以供选择
+     *
+     * @param orgCode 机构编码前缀
+     * @return
+     */
+    public List<Org> getOrgList(String orgCode) {
+        List<Org> list = new ArrayList<>();
+        List<Map<String, String>> data = (List<Map<String, String>>) httpUtils.doGet("/wzcdc/rest/tCdcOrgController/list/" + orgCode).get("data");
+        data.stream().filter(m -> !m.get("orgCode").equals(orgCode + "000")).forEach(m -> {
+            list.add(new Org(m.get("orgCode"), m.get("unitName")));
+        });
+        return list;
     }
 }

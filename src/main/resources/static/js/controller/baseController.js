@@ -28,7 +28,7 @@ app.controller('baseController', function ($scope) {
      * @param areaCode 地区编码
      */
     $scope.gosf = function (username, areaCode) {
-        location.href = "/shequ/sf?username" + username + "&areaCode=" + areaCode;
+        location.href = "/shequ/sf?username=" + username + "&areaCode=" + areaCode;
     };
 
 
@@ -72,6 +72,14 @@ app.controller('baseController', function ($scope) {
             return "未填写";
         } else {
             return data;
+        }
+    };
+
+    $scope.forDate = function (dateStr) {
+        if (!dateStr || dateStr.toUpperCase() === "NULL") {
+            return "未填写";
+        } else {
+            return dateStr.substring(0, 10);
         }
     };
 });
